@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Wishlist Items</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="light">
+  <h1>🛍️ My Wishlist Items</h1>
+  <a href="index.html" class="link-btn">➕ Add New Product</a>
+  <button id="themeToggle">🌙 Switch to Dark Mode</button>
+  <div id="productList"></div>
+
+  <script>
+    const body = document.body;
+    const themeToggle = document.getElementById("themeToggle");
+    const productList = document.getElementById("productList");
+    const products = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    // Load theme
+    const currentTheme = localStorage.getItem("theme") || "light";
+    body.className = currentTheme;
+    updateThemeButton();
+
+    // Render product cards
+    function renderProducts() {
+      productList.innerHTML = "";
+      products.forEach((product) => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+          <img src="${product.image || 'https://via.placeholder.com/200'}" alt="${product.name}" />
+          <h3>${product.name}</h3>
+          <p><strong>Store:</strong> ${product.store}</p>
+          <p><strong>Price:</strong> ${product.price}</p>
+          <a href="${product.link}" target="_blank">🔗 View Product</a>
+          <p>${product.notes}</p>
+        `;
+        productList.appendChild(card);
+      });
+    }
+
+    renderProducts();
+
+    // Theme Toggle
+    themeToggle.addEventListener("click", () => {
+      body.classList.toggle("dark");
+      body.classList.toggle("light");
+      updateThemeButton();
+      localStorage.setItem("theme", body.className);
+    });
+
+    function updateThemeButton() {
+      themeToggle.textContent = body.classList.contains("dark")
+        ? "☀️ Switch to Light Mode"
+        : "🌙 Switch to Dark Mode";
+    }
+  </script>
+</body>
+</html>

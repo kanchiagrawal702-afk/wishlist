@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Wishlist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="light">
+  <h1>🛍️ My Wishlist</h1>
+  <a href="wishlist.html" class="link-btn">📃 View Wishlist</a>
+  <button id="themeToggle">🌙 Switch to Dark Mode</button>
+
+  <form id="productForm">
+    <input type="text" id="name" placeholder="Product Name" required />
+    <input type="text" id="price" placeholder="Price" />
+    <input type="text" id="store" placeholder="Store (Amazon, etc.)" />
+    <input type="url" id="link" placeholder="Product Link" required />
+    <input type="url" id="image" placeholder="Image URL" />
+    <textarea id="notes" placeholder="Notes (optional)"></textarea>
+    <button type="submit">Add Product</button>
+  </form>
+  <div id="successPopup">✅ Product added to your wishlist!</div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
